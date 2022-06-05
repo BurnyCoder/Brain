@@ -1,0 +1,27 @@
+//todo fuzzy polycontextuality
+
+include General and Concrete 
+
+GetNextState (
+    (UpdateSimulationLocal of Simulation) or (UpdateSimulationGlobal Simulation)
+)
+ of (SimulationState to SimulationState) of (Any1 to Any2)
+
+OutsideSimulation of IO
+
+Render of (SimulationState to OutsideSimulation)
+
+SimulationLoop 
+{
+    GetNextState with SimulationState;
+    Render with SimulationState;
+    SimulationLoop with SimulationState
+
+} 
+ of (SimulationState to EndMessage)
+
+Main of 
+{
+    Render with (Simulation BigBang);
+    Render with (SimulationLoop BigBang)
+} of Cthulhu

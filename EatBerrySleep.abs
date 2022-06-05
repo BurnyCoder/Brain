@@ -1,0 +1,111 @@
+PepaAssociationsGraph of ( 
+(
+    ("hunger" or "thirst" or "certainity" or "libido" or "exploration" or "safety" or "dominance" or "need to belong" or "aethestics" or "health" or "nurturing" or "status" or "affection" or "competence","food", "ball", "moving", "rock", "stick", "eating blueberries good", "human", "fire", "shelter", "rain", "forest", "pepa", "tiger") of List (BasicNeed or Concept) of vertexes of List Any1, 
+
+    (("hunger", "food", 5.3),("exploration", "forest", 3.1),("safety", "shelter", "4.5"),("safety", "certainity", 4,1),("competence", "human", 2.7),("human", "pepa", 3.4), ("pepa", "competence", 2.0), ("exploration", "competence", 2.7), ("eating blueberries good", "safety", 1.2),("tiger", "dominance", 2.5)) of List ((BasicNeed or Concept) and (BasicNeed or Concept) and Strength) of edges of List (Any1 and Any1 and Any2) 
+) of Graph (BasicNeed or Concept) Float of Graph
+
+PepaBasicNeedsGraph of (
+    ("hunger" or "thirst" or "certainity" or "libido" or "exploration" or "safety" or "dominance" or "need to belong" or "aethestics" or "health" or "nurturing" or "status" or "affection" or "competence",) of List (BasicNeed or Concept) of vertexes of List Any1, 
+
+    (("exploration", "competence", 2.7),("safety", "certainity", 4,1)) of List ((BasicNeed or Concept) and (BasicNeed or Concept) and Strength) of edges of List (Any1 and Any1 and Any2) 
+) of Graph (BasicNeed or Concept) Float of Graph
+
+PepaSelfModel of (
+    ("competence", "human", "pepa","exploration") of List (BasicNeed or Concept) of vertexes of List Any1, 
+
+    (("competence", "human", 2.7),("human", "pepa", 3.4), ("pepa", "competence", 2.0), ("exploration", "competence", 2.7)) of List ((BasicNeed or Concept) and (BasicNeed or Concept) and Strength) of edges of List (Any1 and Any1 and Any2) 
+) of Graph (BasicNeed or Concept) Float of Graph
+
+PepaSelfModel of (
+    ("eating blueberries good") of List (BasicNeed or Concept) of vertexes of List Any1, 
+
+    (("eating blueberries good", "safety", 1.2)) of List ((BasicNeed or Concept) and (BasicNeed or Concept) and Strength) of edges of List (Any1 and Any1 and Any2) 
+) of Graph (BasicNeed or Concept) Float of Graph
+
+PepaBlueberries of (
+    if case BlueberriesInVision and because memory "eating blueberries good" then EatBlueberries 
+) of (PredictioModel and MotivationModulatorfactor and AttentionalFactor) of (InitialConditions to Result) 
+
+Mind of 
+(
+    AssociationsGraph of 
+    HyperGraph (("hunger", "certainity", "exploration", "safety", "dominance", "health" , "competence") plus ("food", "blueberry", "apple", "eating blueberries good", "shelter", "warmth", "rain", "pepa", ) of List (BasicNeed or Concept) of vertexes of List Any1)
+    of HyperGraph BasicNeedsAndConceptsObjects HyperNeuralConnections
+    of HyperGraph (BasicNeed or Concept) Strength
+    
+    
+    BasicNeedsGraph in AssociationsGraph
+    
+    Happening of NamedList Concept in AssociationsGraph //both conscious and subconscious
+    Awareness of NamedList Concept in AssociationsGraph //conscious 
+    Attention of NamedList Concept in AssociationsGraph //conscious that's being paid attention to
+    
+    //Selfawareness is accessing memory of attentionmechanism linking to itself
+
+    Concepts(
+        KnownConcepts of (NamedList Concept) in AssociationsGraph
+        SelfConcept in Concepts
+        Memories in Concepts
+        Walking, Running, Sleeping, Thinking, Computing, Working, Watching, Cooking, FallingAsleep in Tasks in Concepts
+        ActiveTasks in Tasks
+    )
+
+    Transformations (
+        KnownTransformations of NamedList (AssociationsGraph to AssociationsGraph) in AssociationsGraph
+        KnownMetaTransformations of NamedList ((KnownTransformations to KnownTransformations) or (KnownMetaTransformations to KnownMetaTransformations)) in AssociationsGraph
+
+        Memory in KnownTransformations
+        PredictionAlgoritms in KnownTransformations 
+        KnownReactingAlgorithms in KnownTransformations
+        PossibleEmotions in KnownTransformations
+        GeneralConceptCreator in KnownTransformations //berries and apples are the same foodwise (apple and berry to food)
+        GeneralAlgorithmCreator in KnownMetaTransformations //eating and sleeping are the same energygainwise
+        WordCreator in KnownTransformations
+        PersonalityTransformations in KnownTransformations
+        RandomScanningOfMemories //i wish i went for that berry yesterday, i wouldnt be hungry (increased chance of going for berry next time with tiger)
+        
+        //on when awake, off when sleeping, but on when dreaming
+        MotivationModulator in KnownTransformations
+        ActiveReactingAlgorithms in KnownTransformations //if berry in vision added to attention space, go for it
+        ActiveEmotions in KnownTransformations
+        ScanningAwarenessContent in KnownTransformations //add berry from awareness to attention
+        ModifyingAttentionContent in KnownTransformations
+
+        //on when sleeping, off when awake
+        SortingAndCleaning in KnownTransformations
+
+        ActiveTransformations of KnownTransformations in AssociationsGraph
+        ActiveMetaTransformations of NamedList ((ActiveTransformations to ActiveTransformations) or (ActiveMetaTransformations to ActiveMetaTransformations)) in AssociationsGraph
+
+        PausedTransformations of KnownTransformations in AssociationsGraph
+        PausedMetaTransformations of NamedList ((ActiveTransformations to ActiveTransformations) or (ActiveMetaTransformations to ActiveMetaTransformations)) in AssociationsGraph
+    )
+    
+    ActiveTransformations (
+        
+    )
+
+    UpdateMind of (SensoryData to PhysicalHealth to Mind) of Sequenced(
+        UnderstandSensoryDataFromEnvironmentAndBody SensoryData PhysicalHealth //add berry and tiger to happening and awareness
+        ActiveTransformations
+
+        //for example
+        --AttentionReact //add berry and tiger to attention //if no action is happening, start thinking about thinking, or thinking about memories, generalising concepts, how to make emotions better, planning,...
+        --GenerateMotivationSignals //hungry wants berry, fear doesnt want tiger
+        --Predict //tiger too much of danger for berry
+        --PhysicalReact //go away, 
+        --Emotion //peace emotion because no tiger, sad emotion because no berry        
+        --Remember //add memory
+        
+        return self
+    )
+)
+
+
+PhysicalHealth of 
+(
+    Health of Number
+    Strength of Number 
+    Energy of Number
+)
