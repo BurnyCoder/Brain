@@ -1,0 +1,137 @@
+(HyperGraph Objects Edges) of (HyperGraph ObjectType EdgeType) of (GeneralGraph ObjectType (ObjectType and1 ObjectType and2 ... andN ObjectType)) of
+(
+    Objects of NamedList ObjectType
+    ObjectsNeighbours of NamedList (Object in Objects, Neighbours in Objects)
+    Edges of NamedList (EdgeType, Connections in Objects)
+
+    #If Connection has Object1 and Object2, then Object1 has Object2 as Neighbour and other way around for all objects excluding the same ones -- equivalence relation without identity
+    
+    NeighboursLaws of 
+        forall (Connections, Information) in Edges holds
+            forall (ObjectTypeInst1, Neighbours1) in Objects in Connections, Object2 of (ObjectTypeInst2, Neighbours2) in Objects in Connections holds
+                if ObjectTypeInst1 isnot ObjectTypeInst2 then
+                    thereis Object2 in Neighbours1
+)
+
+Mind of 
+(
+    def Name of Text
+    def BasicNeed of Atom of None 
+    def Concept of Any
+    def Strength of Number 
+    
+    AssociationsGraph of HyperGraph BasicNeedsAndConceptsObjects HyperNeuralConnections of HyperGraph (BasicNeed or Concept) Strength
+    BasicNeedsGraph in AssociationsGraph
+    
+    Happening of NamedList Concept in AssociationsGraph //both conscious and subconscious
+    Awareness of NamedList Concept in AssociationsGraph //conscious 
+    Attention of NamedList Concept in AssociationsGraph //conscious that's being paid attention to
+    
+    //Selfawareness is accessing memory of attentionmechanism linking to itself
+
+    Concepts(
+        KnownConcepts of (NamedList Concept) in AssociationsGraph
+        SelfConcept in Concepts
+        Memories in Concepts
+        Walking, Running, Sleeping, Thinking, Computing, Working, Watching, Cooking, FallingAsleep in Tasks in Concepts
+        ActiveTasks in Tasks
+    )
+
+    Transformations (
+        KnownTransformations of NamedList (AssociationsGraph to AssociationsGraph) in AssociationsGraph
+        KnownMetaTransformations of NamedList ((KnownTransformations to KnownTransformations) or (KnownMetaTransformations to KnownMetaTransformations)) in AssociationsGraph
+
+        Memory in KnownTransformations
+        PredictionAlgoritms in KnownTransformations 
+        KnownReactingAlgorithms in KnownTransformations
+        PossibleEmotions in KnownTransformations
+        GeneralConceptCreator in KnownTransformations //berries and apples are the same foodwise (apple and berry to food)
+        GeneralAlgorithmCreator in KnownMetaTransformations //eating and sleeping are the same energygainwise
+        WordCreator in KnownTransformations
+        PersonalityTransformations in KnownTransformations
+        RandomScanningOfMemories //i wish i went for that berry yesterday, i wouldnt be hungry (increased chance of going for berry next time with tiger)
+        
+        //on when awake, off when sleeping, but on when dreaming
+        MotivationModulator in KnownTransformations
+        ActiveReactingAlgorithms in KnownTransformations //if berry in vision added to attention space, go for it
+        ActiveEmotions in KnownTransformations
+        ScanningAwarenessContent in KnownTransformations //add berry from awareness to attention
+        ModifyingAttentionContent in KnownTransformations
+
+        //on when sleeping, off when awake
+        SortingAndCleaning in KnownTransformations
+
+        ActiveTransformations of KnownTransformations in AssociationsGraph
+        ActiveMetaTransformations of NamedList ((ActiveTransformations to ActiveTransformations) or (ActiveMetaTransformations to ActiveMetaTransformations)) in AssociationsGraph
+
+        PausedTransformations of KnownTransformations in AssociationsGraph
+        PausedMetaTransformations of NamedList ((ActiveTransformations to ActiveTransformations) or (ActiveMetaTransformations to ActiveMetaTransformations)) in AssociationsGraph
+    )
+    
+    ActiveTransformations (
+        
+    )
+
+    UpdateMind of (SensoryData to PhysicalHealth to Mind) of Sequenced(
+        UnderstandSensoryDataFromEnvironmentAndBody SensoryData PhysicalHealth //add berry and tiger to happening and awareness
+        ActiveTransformations
+
+        //for example
+        --AttentionReact //add berry and tiger to attention //if no action is happening, start thinking about thinking, or thinking about memories, generalising concepts, how to make emotions better, planning,...
+        --GenerateMotivationSignals //hungry wants berry, fear doesnt want tiger
+        --Predict //tiger too much of danger for berry
+        --PhysicalReact //go away, 
+        --Emotion //peace emotion because no tiger, sad emotion because no berry        
+        --Remember //add memory
+        
+        return self
+    )
+)
+
+
+PhysicalHealth of 
+(
+    Health of Number
+    Strength of Number 
+    Energy of Number
+)
+
+
+Entity of 
+(
+    CorrespondingTypes of TypeHiearchy of Any
+    Location of List Coords,
+    PhysicalHealth,
+    Mind,
+    SensoryData,
+
+    UpdateEntity(
+        UpdateMind SensoryData PhysicalHealth;
+    )
+) 
+
+Simulation of 
+(
+    Size of Coords,
+    Entities of List Entity,
+    SimulationActiveProcesses of List (Entities to Entities),
+
+    UpdatePhysicalHealthData of (Entities to Entities) of SimulationActiveProcesses
+    (foreach entity of Entities replace it with ---Physical health data logic update function--- entity),
+
+    UpdateSensoryData of (Entities to Entities) of SimulationActiveProcesses
+    (foreach entity of Entities replace it with ---Sensory data logic update function--- entity),
+
+    UpdateSimulationLocal{ 
+        for process of SimulationActiveProcesses (replaceWith (process) entities);
+        (for entity of Entities replaceWith entity by (return UpdateEntity of entity)),
+        return self
+    } of Simulation
+) 
+
+BasicNeed is ("hunger" or "thirst" or "certainity" or "libido" or "exploration" or "safety" or "dominance" or "need to belong" or "aesthetics" or "health" or "nurturing" or "status" or "affection" or "competence")
+Concept is ("food", "ball", "moving", "rock", "stick", "eating blueberries good", "human", "fire", "shelter", "rain", "forest", "pepa", "tiger")
+
+BigBang of of itialSimulationState of SimulationState of Simulation
+
+UpdateSimulationGlobal of (Simulation to Simulation)
